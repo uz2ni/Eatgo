@@ -1,0 +1,11 @@
+/* 프로젝트 초기에 없고, 강의에 해당 코드 있음
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+*/
+rootProject.name = 'eatgo'
+
+include 'eatgo-api'
+
