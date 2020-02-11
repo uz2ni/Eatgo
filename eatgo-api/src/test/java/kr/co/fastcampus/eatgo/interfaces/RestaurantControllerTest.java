@@ -35,20 +35,20 @@ class RestaurantControllerTest {
 	@Test
 	public void detail() throws Exception {
 		// case 1
-		mvc.perform(get("/restaurants/20"))
+		mvc.perform(get("/restaurants/1004"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(
-						containsString("\"id\":20")
+						containsString("\"id\":1004")
 				))
 				.andExpect(content().string(
 						containsString("\"name\":\"Bob zip\"")
 				));
 
 		// case 2
-		mvc.perform(get("/restaurants/1004"))
+		mvc.perform(get("/restaurants/2020"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(
-						containsString("\"id\":1004")
+						containsString("\"id\":2020")
 				))
 				.andExpect(content().string(
 						containsString("\"name\":\"Cyber Food\"")
