@@ -1,9 +1,12 @@
 package kr.co.fastcampus.eatgo.interfaces;
 
+import kr.co.fastcampus.eatgo.domain.RestaurantRepository;
+import kr.co.fastcampus.eatgo.domain.RestaurantRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -18,6 +21,9 @@ class RestaurantControllerTest {
 
 	@Autowired  // spring에서 알아서 해주도록 함. (이후에 자세히 설명)
 	private MockMvc mvc;
+
+	@SpyBean(RestaurantRepositoryImpl.class) // 사용하고자 하는 레파지토리 주입 해야 함. / interface인 경우 (사용할 구현체) 넣어주어야 함.
+	private RestaurantRepository repository;
 
 	@Test
 	public void list() throws Exception {
