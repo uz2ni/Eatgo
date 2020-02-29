@@ -1,5 +1,8 @@
 package kr.co.fastcampus.eatgo.interfaces;
 
+import kr.co.fastcampus.eatgo.application.RestaurantService;
+import kr.co.fastcampus.eatgo.domain.MenuItemRepository;
+import kr.co.fastcampus.eatgo.domain.MenuItemRepositoryImpl;
 import kr.co.fastcampus.eatgo.domain.RestaurantRepository;
 import kr.co.fastcampus.eatgo.domain.RestaurantRepositoryImpl;
 import org.junit.jupiter.api.Test;
@@ -22,8 +25,15 @@ class RestaurantControllerTest {
 	@Autowired  // spring에서 알아서 해주도록 함. (이후에 자세히 설명)
 	private MockMvc mvc;
 
+	@SpyBean(RestaurantService.class)
+	private RestaurantService restaurantService;
+
 	@SpyBean(RestaurantRepositoryImpl.class) // 사용하고자 하는 레파지토리 주입 해야 함. / interface인 경우 (사용할 구현체) 넣어주어야 함.
-	private RestaurantRepository repository;
+	private RestaurantRepository restaurantRepository;
+
+	@SpyBean(MenuItemRepositoryImpl.class)
+	private MenuItemRepository menuItemRepository;
+
 
 	@Test
 	public void list() throws Exception {
@@ -48,6 +58,9 @@ class RestaurantControllerTest {
 				))
 				.andExpect(content().string(
 						containsString("\"name\":\"Bob zip\"")
+				))
+				.andExpect(content().string(    // 메뉴 아이템 테스트
+						containsString("Kimchi")
 				));
 
 		// case 2
